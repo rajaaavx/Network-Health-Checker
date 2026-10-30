@@ -18,11 +18,27 @@ def checker(ip_host):
 
 
     if platform.system().lower == "windows":
-        command = ["ping", "-n", "1", "-w", "2000", host]  #khusus windows
+        command = ["ping", "-n", "1", "-w", "2000", ip_host]  #khusus windows
     else:
-        command = ["ping", "-c", "1", host]   #buat linux ama macOS
+        command = ["ping", "-c", "1", ip_host]   #buat linux ama macOS
 
-        
+    try:
+        result = subprocess.run(
+            command,
+            capture_output=True,
+            text=True,
+            timeout=5
+        )
+    except (subprocess.TimeoutExpired, OSError):
+        return {
+            "host": ip_host,
+            "status": "DOWN",
+            "latency_ms": None
+        }
+
+
+def save_report(hasil):
+    print("sabar dulu")
 
 def main():
     print("=" *40)
@@ -35,6 +51,7 @@ def main():
         hasil = checker(ip_host)
     except ValueError as err:       #error handling
         print(f"Error: {err}")
+
 
 
 if __name__ == "__main__":
