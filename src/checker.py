@@ -9,7 +9,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 REPORT_FILE = BASE_DIR / "network_report.csv"
 
 def checker(ip_host):
-    print("yes")
+    print("Checking Connectivity...")
+
+    if not ip_host or ip_host.strip():
+        raise ValueError("Host Cannot be empty!")
+
+    ip_host = ip_host.strip()
+     
 
 def main():
     print("=" *40)
