@@ -15,7 +15,14 @@ def checker(ip_host):
         raise ValueError("Host Cannot be empty!")
 
     ip_host = ip_host.strip()
-     
+
+
+    if platform.system().lower == "windows":
+        command = ["ping", "-n", "1", "-w", "2000", host]  #khusus windows
+    else:
+        command = ["ping", "-c", "1", host]   #buat linux ama macOS
+
+        
 
 def main():
     print("=" *40)
