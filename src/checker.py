@@ -8,3 +8,24 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 REPORT_FILE = BASE_DIR / "network_report.csv"
 
+def checker(ip_host):
+    print("yes")
+
+def main():
+    print("=" *40)
+    print("       Network Health Checker")
+    print("=" *40)
+
+    ip_host = input("Enter IP adders or Domain: ").strip()
+
+    try:
+        hasil = checker(ip_host)
+    except ValueError as err:       #error handling
+        print(f"Error: {err}")
+
+
+if __name__ == "__main__":
+    main()
+
+# a = input("input : ").strip()
+# print(a.strip())
