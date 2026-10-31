@@ -76,6 +76,19 @@ def main():
         hasil = checker(ip_host)
     except ValueError as err:       #error handling
         print(f"Error: {err}")
+        return
+
+    print("\n--- CHECK RESULT ---")
+    print(f"Host    : {hasil['Host']}")
+    print(f"Status  : {hasil['Status']}")
+
+    Latency = hasil["Latency"]
+    print(
+        f"Latency: {Latency}" if Latency is not None
+        else "Latency: N/A"
+    )
+
+    save_report(hasil)
 
 
 
