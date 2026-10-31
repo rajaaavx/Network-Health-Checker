@@ -43,6 +43,22 @@ def checker(ip_host):
         latency = "None"
     else:
         status = "UP"
+
+        # cari latency pake regexc
+        match = re.search(
+            r"time[=<]\s*(\d+(?:\.\d+)?)\s*ms",
+            output,
+            re.IGNORECASE
+        )
+
+        latency = float(match.group(1)) if match else None #kalo match ambil group 1
+
+        return{
+            "Host" : ip_host,
+            "Status" : status,
+            "Latency" : latency 
+        }
+    
     
     
 
