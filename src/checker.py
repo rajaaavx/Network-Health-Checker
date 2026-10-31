@@ -11,7 +11,7 @@ REPORT_FILE = BASE_DIR / "network_report.csv"
 def checker(ip_host):
     print("Checking Connectivity...")
 
-    if not ip_host or ip_host.strip():
+    if not ip_host or not ip_host.strip():
         raise ValueError("Host Cannot be empty!")
 
     ip_host = ip_host.strip()
@@ -23,7 +23,7 @@ def checker(ip_host):
         command = ["ping", "-c", "1", ip_host]   #buat linux ama macOS
 
     try:
-        result = subprocess.run(
+        hasil = subprocess.run(
             command,
             capture_output=True,
             text=True,
@@ -36,6 +36,15 @@ def checker(ip_host):
             "latency_ms": None
         }
 
+    output = hasil.stdout + hasil.stderr #digabung soalnya ada yang di kiri atau ga di kanan hasil ping nya??
+
+    if hasil.returncode != 0:
+        status = "DOWN"
+        latency = "None"
+    else:
+        status = "UP"
+    
+    
 
 def save_report(hasil):
     print("sabar dulu")
@@ -56,6 +65,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+    
 
 # a = input("input : ").strip()
 # print(a.strip())
