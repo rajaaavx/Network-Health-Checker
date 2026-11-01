@@ -63,7 +63,9 @@ def checker(ip_host):
     
 
 def save_report(hasil):
-    print("sabar dulu")
+    """Append a check result to a CSV report."""
+
+    file_exists = REPORT_FILE.exists()
 
 def main():
     print("=" *40)
