@@ -4,7 +4,9 @@ from unittest.mock import patch, Mock
 from src.checker import check_host
 
 class TestNetworkHealthChecker(unittest.TestCase):
-    print("damn kapan ujian gua selesai dan dapet kerja yah")
+    def test_empty_host(self):
+        with self.assertRaises(ValueError):
+            check_host("")
 
 if __name__ == "__main__":
     unittest.main()
