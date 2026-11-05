@@ -66,6 +66,20 @@ def save_report(hasil):
     """Append a check result to a CSV report."""
 
     file_exists = REPORT_FILE.exists()
+    with REPORT_FILE.open(
+        "a",
+        newline="",
+        encoding="utf-8"
+    ) as file:
+        writer = csv.DictWriter(
+            file,
+            fieldnames=[
+                "timestamp",
+                "host",
+                "status",
+                "latency_ms"
+            ]
+        )
 
 def main():
     print("=" *40)
