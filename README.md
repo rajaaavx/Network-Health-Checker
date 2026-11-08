@@ -78,7 +78,3 @@ Run the unit tests:
 - Add packet loss statistics
 - Generate latency charts
 - Build a Streamlit dashboard
-
-## License
-
-MIT
